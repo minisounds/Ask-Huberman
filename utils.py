@@ -1,3 +1,4 @@
+from flask import Flask, render_template, request
 import os
 from langchain import hub
 from langchain_community.chat_models import ChatOpenAI
@@ -8,7 +9,11 @@ from langchain_community.vectorstores import Chroma
 from langchain.embeddings import HuggingFaceBgeEmbeddings
 from langchain.schema import Document
 
-os.environ['OPENAI_API_KEY'] = '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'
+
+os.environ['OPENAI_API_KEY'] = ""
+# set up langchain environment
+def setup_langchain_environment(api_key):
+    os.environ['OPENAI_API_KEY'] = api_key
 
 # load in each episode's transcript into langchain document obj
 def process_txt_file(file_path):
@@ -57,7 +62,7 @@ vector_store = Chroma.from_documents(documents=all_splits, embedding=bge_embeddi
 
 retriever = vector_store.as_retriever(search_type="similarity", search_kwargs={"k":5})
 
-retrieved_documents = retriever.get_relevant_documents("How do I find my temperature minimum?")
+# retrieved_documents = retriever.get_relevant_documents("How do I find my temperature minimum?")
 # print(len(retrieved_documents))
 # print(retrieved_documents)
 
@@ -76,5 +81,7 @@ rag_chain = (
     | StrOutputParser()
 )
 
-print(prompt)
-print(rag_chain.invoke("How do I find my temperature minimum?"))
+def invoke_rag_chain(question):
+    result = rag_chain.invoke(question)
+    return result
+
