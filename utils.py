@@ -9,8 +9,6 @@ from langchain_community.vectorstores import Chroma
 from langchain.embeddings import HuggingFaceBgeEmbeddings
 from langchain.schema import Document
 
-
-
 # load in each episode's transcript into langchain document obj
 def process_txt_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
