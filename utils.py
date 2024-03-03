@@ -10,10 +10,6 @@ from langchain.embeddings import HuggingFaceBgeEmbeddings
 from langchain.schema import Document
 
 
-os.environ['OPENAI_API_KEY'] = ""
-# set up langchain environment
-def setup_langchain_environment(api_key):
-    os.environ['OPENAI_API_KEY'] = api_key
 
 # load in each episode's transcript into langchain document obj
 def process_txt_file(file_path):

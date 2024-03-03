@@ -3,17 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Langchain Flask App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #f0f4f8;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #4a90e2; /* Softer blue color */
+        }
+
+        form {
+            max-width: 500px;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4a90e2;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #3463a0;
+        }
+
+        .text-center img {
+            width: 200px;
+            height: auto;
+            border-radius: 15px; /* Rounded corners for the image */
+            padding: 10px; /* Add padding around the image */
+        }
+
+        .text-center p {
+            margin-top: 20px;
+        }
+    </style>
+    <title>Ask Huberman</title>
 </head>
 <body>
-    <h1>Langchain Flask App</h1>
-    <form action="/invoke" method="post">
-        <!-- <label for="api_key">API Key:</label> -->
-        <!-- <input type="text" id="api_key" name="api_key" required><br> -->
-        <label for="question">Question:</label>
-        <input type="text" id="question" name="question" required><br>
-        <input type="submit" value="Invoke RAG Chain">
-    </form>
+    <div class="container">
+        <div class="text-center">
+            <h1>Ask Huberman</h1>
+        </div>
+        <div class="text-center">
+            <img src="{{ url_for('static', filename='andrew_huberman.webp') }}" alt="Andrew Huberman">
+            <p>Hey! This is "Andrew Huberman," a neuroscientist at Stanford. I'm a RAG Based LLM simulating a conversation with Andrew Huberman, running off content from his first twenty podcasts.
+            <br>Ask me anything about Neuroscience, Sleep, Vision, Stress, etc. and I'll try to answer it.
+            </p>
+        </div>
+        <form action="/invoke" method="post">
+            <div class="form-group">
+                <label for="question">Question:</label>
+                <input type="text" class="form-control" id="question" name="question" required>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Ask Huberman Your Question...">
+            </div>
+        </form>
+    </div>
 </body>
 </html>
-
